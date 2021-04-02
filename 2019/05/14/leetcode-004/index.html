@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="leetcode-数组,leetcode-困难,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sun" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="题目链接：寻找两个有序数组的中位数题目描述：给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 示例 1: 1234nums1 = [1, 3];nums2 = [2];则中位数是 2.0 示例 2: 1234nums1 = [1, 2">
+<meta name="keywords" content="leetcode-数组,leetcode-困难">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-004：寻找两个有序数组的中位数">
+<meta property="og:url" content="https://sdy1999.github.io/2019/05/14/leetcode-004/index.html">
+<meta property="og:site_name" content="Sun">
+<meta property="og:description" content="题目链接：寻找两个有序数组的中位数题目描述：给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 示例 1: 1234nums1 = [1, 3];nums2 = [2];则中位数是 2.0 示例 2: 1234nums1 = [1, 2">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-24T10:48:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-004：寻找两个有序数组的中位数">
+<meta name="twitter:description" content="题目链接：寻找两个有序数组的中位数题目描述：给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 示例 1: 1234nums1 = [1, 3];nums2 = [2];则中位数是 2.0 示例 2: 1234nums1 = [1, 2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sdy1999.github.io/2019/05/14/leetcode-004/">
+
+
+
+
+
+  <title>leetcode-004：寻找两个有序数组的中位数 | Sun</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sdy1999.github.io/2019/05/14/leetcode-004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun DongYue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode-004：寻找两个有序数组的中位数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-14T10:04:26+08:00">
+                2019-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode-数组/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode-数组</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题目链接："><a href="#题目链接：" class="headerlink" title="题目链接："></a>题目链接：</h1><h4 id="寻找两个有序数组的中位数"><a href="#寻找两个有序数组的中位数" class="headerlink" title="寻找两个有序数组的中位数"></a><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">寻找两个有序数组的中位数</a></h4><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给定两个大小为 m 和 n 的有序数组 <code>nums1</code> 和 <code>nums2</code>。</p>
+<p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p>
+<p>你可以假设 <code>nums1</code> 和 <code>nums2</code> 不会同时为空。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [<span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line">nums2 = [<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">则中位数是 <span class="number">2.0</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">nums2 = [<span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">则中位数是 (<span class="number">2</span> + <span class="number">3</span>)/<span class="number">2</span> = <span class="number">2.5</span></span><br></pre></td></tr></table></figure>
+<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><p>因要求时间复杂度为 O(log(m + n))，所以考虑采用二分查找的方法来解决这个问题</p>
+<h3 id="定义“割”："><a href="#定义“割”：" class="headerlink" title="定义“割”："></a>定义“割”：</h3><p>首先定义割的概念：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">我们通过切一刀，能够把有序数组分成左右两个部分，切的那一刀就被称为割(Cut)，割的左右会有两个元素，分别是左边最大值和右边最小值。</span><br><span class="line">我们定义L = Max(LeftPart)，R = Min(RightPart)</span><br><span class="line"></span><br><span class="line">割操作可以割在两个数中间，也可以在一个数上进行：</span><br><span class="line"></span><br><span class="line">如数组 如数组 arr[4] = &#123;0,1,2,3,4,5&#125;</span><br><span class="line">	若割在2,3之间，即&#123;0,1,2 | 3,4,5&#125;</span><br><span class="line">   	则中值为（2+3）/2  </span><br><span class="line">   	</span><br><span class="line">   再如数组 arr[5] = &#123;0,1,2,3,4&#125;</span><br><span class="line">   	若割在数字2上，即&#123;0,1,2|2,3,4&#125;</span><br><span class="line">   	则中值为（2+2）/2</span><br></pre></td></tr></table></figure>
+<h3 id="通过“割”来找到两个有序数组的第k位数："><a href="#通过“割”来找到两个有序数组的第k位数：" class="headerlink" title="通过“割”来找到两个有序数组的第k位数："></a>通过“割”来找到两个有序数组的第k位数：</h3><p>设$C_i$为当前数组对应的割点</p>
+<p>​    $L_i$为当前数组割点左元素</p>
+<p>​    $R_i$为当前数组割点右元素</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Leftpart</th>
+<th style="text-align:center">$C_i$</th>
+<th style="text-align:center">Rightpart</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$a_1,a_2,a_3,…,a_i$</td>
+<td style="text-align:center">i</td>
+<td style="text-align:center">$a_{i+1},a_{i+2},a_{i+3},…,a_n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$b_1,b_2,b_3,…,b_j$</td>
+<td style="text-align:center">j</td>
+<td style="text-align:center">$b_{j+1},b_{j+2},b_{j+3},…,b_m$</td>
+</tr>
+</tbody>
+</table>
+<p>根据割的概念，一定有 $L_1$&lt;= $R_1$ , $L_2$&lt;=$R_2$</p>
+<ol>
+<li><p>若令 $L_1$ &lt;= $R_2$ &amp;&amp; $L_2$&lt;= $R_1$,则说明此时 Leftpart 中的全部元素 &lt;= Rightpart 中的所有元素</p>
+<p>​        若此时左边元素的个数之和为k,则说明此时两个有序数组的第k个数为 max($L_1$,$L_2$);</p>
+</li>
+<li><p>若当前割法不满足 $L_1$ &lt;= $R_2$ &amp;&amp; $L_2$&lt;= $R_1$：</p>
+<p>​    如果$L_1$&gt; $R_2$, 则说明数组a[]的割点左侧元素过多，故需将C1 减小，C2增大</p>
+<p>​    如果$L_2$ &gt; $R_1$, 则说明数组a[]的割点左侧元素过少，故需将C1 增大，C2减小</p>
+</li>
+</ol>
+<p>通过此种方法便可以找到两个有序数组的第k个数</p>
+<h3 id="将第k位数-延申为-中位数："><a href="#将第k位数-延申为-中位数：" class="headerlink" title="将第k位数 延申为 中位数："></a>将第k位数 延申为 中位数：</h3><p>因寻找两个有序数组的第k位数 无需考虑数组的奇偶性，所以将其延申为中位数时需要考虑奇偶性的关系</p>
+<p>因为将两个数组进行 奇偶，偶奇，奇奇，偶偶的情况进行讨论有些麻烦，所以我们希望寻找一种对数组进行虚拟拓展的方法来将操作统一化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">因 <span class="number">2</span>n+<span class="number">1</span> 恒为奇数，所以可以通过：</span><br><span class="line"></span><br><span class="line">a[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;；</span><br><span class="line"></span><br><span class="line">a_tuo[<span class="number">2</span>*<span class="number">4</span> + <span class="number">1</span>] = &#123;#,<span class="number">0</span>,#,<span class="number">1</span>,#,<span class="number">2</span>,#,<span class="number">3</span>,#&#125;；</span><br><span class="line"></span><br><span class="line">此种拓展方式将数组拓展为长度为<span class="number">2</span>n+<span class="number">1</span>的奇数长度的数组</span><br></pre></td></tr></table></figure>
+<p>采用这种拓展方式的好处：</p>
+<ol>
+<li><strong>可以通过简单的数学计算表示相同的元素在数组拓展前后位置的对应关系：</strong><pre><code> 拓展后数组中元素的位置/2 = 原来数组中相应的元素位置
+例如：
+</code></pre></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元素值</th>
+<th style="text-align:center">在拓展前数组的位置</th>
+<th style="text-align:center">在拓展后数组的位置</th>
+<th style="text-align:center">位置关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">a[3]</td>
+<td style="text-align:center">a[7]</td>
+<td style="text-align:center">7/2 = 3</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">a[1]</td>
+<td style="text-align:center">a_tuo[3]</td>
+<td style="text-align:center">3/2 = 1</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li><p><strong>可以很简单统一 割在两个元素之间，和割在一个元素的操作：</strong></p>
+<p>对于数组 a_tuo[2*4 + 1] = ；</p>
+<p>即取割点 $C_i$</p>
+<p>​    若 i =  4，即割点取在1,2之间的 ‘#’上 ，说明此时为割在两个元素之间</p>
+<p>​            $L_i$  =  ($C_i$ -1) /2 = 1;</p>
+<p>​            $R_i$=  $C_i$/2 = 2;</p>
+<p>​    恰好可以映射在原数组的元素1,2对应的位置</p>
+<p>​    若i = 5，即割点取在数字2上，说明此时为割在一个元素上</p>
+<p>​            $L_i$  =  ($C_i$ -1)/2 = 2;</p>
+<p>​            $R_i$  =  $C_i$ /2 = 2;</p>
+<p>​    恰好可以映射在原数组的元素2对应的位置</p>
+<p>即通过此种拓展方法，可以使用$L_i$  = $C_i$-1；$R_i$= $C_i$ ；一套公式统一割点选择不同情况下的操作  </p>
+<p>ps： 因找到了映射关系，所以拓展无需实际上进行，只是虚拟的一步</p>
+</li>
+</ol>
+<p><strong>接下来就可以进行 寻找中位数的操作了：</strong></p>
+<p>​    把2个数组看做一个虚拟的数组A，目前有2m+2n+2个元素，割在m+n+1处，所以我们只需找到m+n+1位置的元素和m+n+2位置的元素就行了。<br>左边：A[m+n+1] = Max($L_1$+$L_2$)<br>右边：A[m+n+2] = Min($R_1$+$R_2$)</p>
+<h3 id="通过二分查找来满足时间复杂度："><a href="#通过二分查找来满足时间复杂度：" class="headerlink" title="通过二分查找来满足时间复杂度："></a>通过二分查找来满足时间复杂度：</h3><p>因为C1 与C2的和为固定的，所以仅需要求出较短的数组对应的C1即可，故我们对较短的数组a[n]进行二分查找：</p>
+<p>二分的方法：</p>
+<p>$L_1$&gt;$R_2$，把C1减小，C2增大。—&gt; C1向左二分 </p>
+<p>$L_2$&gt;$R_1$，把C1增大，C2减小。—&gt; C1向右二分</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums1.size();</span><br><span class="line">        <span class="keyword">int</span> m = nums2.size();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//保证第一个数组为较短的数组，用于减少二分查找的时间</span></span><br><span class="line">        <span class="keyword">if</span>(n &gt; m)&#123;</span><br><span class="line">            <span class="keyword">return</span> findMedianSortedArrays(nums2,nums1);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> L1,L2,R1,R2,c1,c2,l = <span class="number">0</span>,e = <span class="number">2</span> * n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(l &lt;= e)&#123;</span><br><span class="line">            </span><br><span class="line">            c1 = (l + e) / <span class="number">2</span>;</span><br><span class="line">            c2 = m + n - c1;</span><br><span class="line">            </span><br><span class="line">            L1 = (c1 == <span class="number">0</span>)?INT_MIN:nums1[(c1<span class="number">-1</span>)/<span class="number">2</span>];  </span><br><span class="line">            R1 = (c1 == <span class="number">2</span>*n)?INT_MAX:nums1[c1/<span class="number">2</span>];</span><br><span class="line">            L2 = (c2 == <span class="number">0</span>)?INT_MIN:nums2[(c2<span class="number">-1</span>)/<span class="number">2</span>];</span><br><span class="line">            R2 = (c2 == <span class="number">2</span>*m)?INT_MAX:nums2[c2/<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(L1 &gt; R2)&#123;</span><br><span class="line">                e = c1 <span class="number">-1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(L2&gt; R1)&#123;</span><br><span class="line">                l = c1 + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (max(L1,L2)+ min(R1,R2))/<span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode-数组/" rel="tag"># leetcode-数组</a>
+          
+            <a href="/tags/leetcode-困难/" rel="tag"># leetcode-困难</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/18/leetcode-015/" rel="prev" title="leetcode-015：三数之和">
+                leetcode-015：三数之和 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Sun DongYue</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目链接："><span class="nav-number">1.</span> <span class="nav-text">题目链接：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找两个有序数组的中位数"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">寻找两个有序数组的中位数</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述："><span class="nav-number">1.1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路："><span class="nav-number">1.2.</span> <span class="nav-text">解题思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义“割”："><span class="nav-number">1.2.1.</span> <span class="nav-text">定义“割”：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过“割”来找到两个有序数组的第k位数："><span class="nav-number">1.2.2.</span> <span class="nav-text">通过“割”来找到两个有序数组的第k位数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将第k位数-延申为-中位数："><span class="nav-number">1.2.3.</span> <span class="nav-text">将第k位数 延申为 中位数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过二分查找来满足时间复杂度："><span class="nav-number">1.2.4.</span> <span class="nav-text">通过二分查找来满足时间复杂度：</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun DongYue</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

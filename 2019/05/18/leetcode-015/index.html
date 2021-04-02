@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="leetcode-数组,leetcode-中等,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sun" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="题目链接:15. 三数之和 题目描述:给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。 注意：答案中不可以包含重复的三元组。 1234567例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1">
+<meta name="keywords" content="leetcode-数组,leetcode-中等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-015：三数之和">
+<meta property="og:url" content="https://sdy1999.github.io/2019/05/18/leetcode-015/index.html">
+<meta property="og:site_name" content="Sun">
+<meta property="og:description" content="题目链接:15. 三数之和 题目描述:给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。 注意：答案中不可以包含重复的三元组。 1234567例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://sdy1999.github.io/images/before.png">
+<meta property="og:image" content="https://sdy1999.github.io/images/after.png">
+<meta property="og:updated_time" content="2019-05-24T13:59:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-015：三数之和">
+<meta name="twitter:description" content="题目链接:15. 三数之和 题目描述:给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。 注意：答案中不可以包含重复的三元组。 1234567例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1">
+<meta name="twitter:image" content="https://sdy1999.github.io/images/before.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sdy1999.github.io/2019/05/18/leetcode-015/">
+
+
+
+
+
+  <title>leetcode-015：三数之和 | Sun</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sdy1999.github.io/2019/05/18/leetcode-015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun DongYue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode-015：三数之和</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-18T10:13:22+08:00">
+                2019-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode-数组/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode-数组</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接:"></a>题目链接:</h1><p><a href="https://leetcode-cn.com/problems/3sum/" target="_blank" rel="noopener">15. <strong>三数之和</strong></a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h1><p>给定一个包含 <em>n</em> 个整数的数组 <code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <em>a，b，c ，</em>使得 <em>a + b + c =</em> 0 ？找出所有满足条件且不重复的三元组。</p>
+<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，</span><br><span class="line"></span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h1><p>​             原本思路是通过一个for循环，每次循环时固定a的值，将a+b+c = 0 的问题 转变为 每次循环，找到所有满足 b+c = -a 的不重复的{b,c}组合，而寻找两数之和时可以采用之前题目使用的方法，使用hash_map来优化时间复杂度，但这样的话去重复的问题会很难解决，所以在开始首先对整个nums[] 数组使用sort()函数排序，具体去重的操作贴在下面的代码，但使用hash_map会超时，就算引入了剪枝优化等操作还是会超时，所以弃用了hash_map,改用了双指针遍历。但还是贴上了使用hash_map的思路作为一个记录</p>
+<h2 id="思路一：使用hash-map"><a href="#思路一：使用hash-map" class="headerlink" title="思路一：使用hash_map"></a>思路一：使用hash_map</h2><p><strong>注意： 这种方法不满足题目运行时间要求，仅仅作为一个思路的记录，满足要求的程序在双指针遍历，可以直接看那个</strong></p>
+<h3 id="hash-map去重的方式"><a href="#hash-map去重的方式" class="headerlink" title="hash_map去重的方式:"></a>hash_map去重的方式:</h3><p>​    去重思路有两种：一个是直接略去寻找相同的三元组的操作，</p>
+<p>​                            另一个是对每个三元组判断是否result中存在相同的三元组</p>
+<p>第一种思路的耗时比第二种少（虽然两种办法都会超时）</p>
+<p>首先说一下我使用hash_map的方法，然后在结合代码说一下我去重的方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">对于数组nums,假设已经固定好num[i],现在要在nums[i+<span class="number">1</span>,i+<span class="number">2</span>,..]中寻找b,c满足 b+c =  -a:</span><br><span class="line">使用hash_map存放某个点渴望的得到的值</span><br><span class="line">例如 m[y] = j 表示 nums[j] 渴望得到 y 来满足 nums[j] + y  = -nums[i]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; nums.size()<span class="number">-1</span>; j++)&#123;</span><br><span class="line">    <span class="comment">// y为当前的点为了满足 nums[i] +num[j] + c = 0 所渴望找到的c的值</span></span><br><span class="line">    <span class="keyword">int</span>  y = -nums[i] - nums[j];</span><br><span class="line">    <span class="comment">//首先判断当前的点的值 是否 为之前的点所渴望的值，若不是，则将当前点存入map中便于后续点查询</span></span><br><span class="line">    <span class="keyword">if</span>(m.find(nums[j]) == m.end())&#123;</span><br><span class="line">        m[y] = j;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//若是，则说明找到了一对&#123;a,b,c&#125;</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;nums[i],nums[j],y&#125;;</span><br><span class="line">        result.push_back(t);            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	因为已经提前排序，所以不会出现类似&#123;<span class="number">0</span>，<span class="number">1</span>，<span class="number">1</span>&#125;&#123;<span class="number">1</span>，<span class="number">0</span>，<span class="number">1</span>&#125;顺序颠倒的重复，而仅会出现&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;这种，所以可对a,b,c分别去重：</span><br><span class="line">	对 a 进行去重是最简单的，只需要保证相同的值仅遍历一次即可：</span><br><span class="line">	添加如下代码：</span><br><span class="line">	<span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>]) </span><br><span class="line">        <span class="keyword">continue</span>;     </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	对 b,c 去重操作发生在找到一对&#123;a,b,c&#125;后：</span><br><span class="line">	</span><br><span class="line">	若是第一种去重方法，因为nums数组已经是排序完毕，所以只需将<span class="keyword">else</span>函数改进一下：</span><br><span class="line">	<span class="keyword">if</span>(m.find(nums[j]) == m.end())&#123;</span><br><span class="line">        m[y] = j;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;nums[i],nums[j],y&#125;;</span><br><span class="line">        result.push_back(t);</span><br><span class="line">        <span class="comment">//只需要保证 b,b,b,b 只与 渴望得到b的c 仅叠加一次即可。</span></span><br><span class="line">        <span class="keyword">while</span>(j+<span class="number">1</span>&lt;nums.size() &amp;&amp; nums[j] == nums[j+<span class="number">1</span>])&#123;</span><br><span class="line">           j++;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">    若采用第二种去重方法，也是仅改动<span class="keyword">else</span>函数即可：</span><br><span class="line">    <span class="keyword">if</span>(m.find(nums[j]) == m.end())&#123;</span><br><span class="line">        m[y] = j;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;nums[i],nums[j],y&#125;;</span><br><span class="line">        sort(t.begin(),t.end());</span><br><span class="line">        <span class="keyword">if</span>(find(result.begin(),result.end(),t) == result.end())&#123;</span><br><span class="line">        	result.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">贴上全代码：</span><br><span class="line">ps：这种方法不满足运行时间要求，仅仅是为了记录一下</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="comment">//若输入不足三个数则直接退出</span></span><br><span class="line">        <span class="keyword">if</span>(nums.size() &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        <span class="comment">//排序，方便后面去重复和剪枝优化</span></span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size()<span class="number">-2</span>; i++)&#123;</span><br><span class="line">            <span class="comment">//去重，相同的值遍历一次即可</span></span><br><span class="line">            <span class="keyword">if</span>( i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>]) </span><br><span class="line">                <span class="keyword">continue</span>;     </span><br><span class="line">            <span class="comment">//剪枝优化，三个正数和不可能为0（建立在已经排序的基础上）</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">            <span class="comment">//若下面的代码不太清楚，可以参考上面的解释</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; nums.size()<span class="number">-1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span>  y = -nums[i] - nums[j];</span><br><span class="line">                <span class="keyword">if</span>(m.find(nums[j]) == m.end())&#123;</span><br><span class="line">                    m[y] = j;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;nums[i],nums[j],y&#125;;</span><br><span class="line">                    result.push_back(t);</span><br><span class="line">                    <span class="keyword">while</span>(j+<span class="number">1</span>&lt;nums.size() &amp;&amp; nums[j] == nums[j+<span class="number">1</span>])&#123;</span><br><span class="line">                        j++;</span><br><span class="line">                    &#125;                   </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="思路二：使用双指针遍历"><a href="#思路二：使用双指针遍历" class="headerlink" title="思路二：使用双指针遍历"></a>思路二：使用双指针遍历</h2><p>因为hash_map的运行时间行不通，所以考虑换一种思路进行 b+c=-a的查找</p>
+<h3 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h3><p>首先还是要对整个<code>nums</code>数组进行排序，这是双指针遍历的基础</p>
+<p>这种方法无论是去重还是总体思路都与上面相同，仅仅是更换了数据结构和查询的推进方式，所以不再累述。</p>
+<p>注意的地方是引入了剪枝优化，大大的缩短了当<code>nums</code>数据量很大时的查询时间。</p>
+<p>引入剪枝优化前：</p>
+<p><img src="/images/before.png" alt></p>
+<p>引入剪枝优化后：</p>
+<p><img src="/images/after.png" alt></p>
+<p>我认为本题之所以使用双指针遍历比hash_map快是因为他可以同时对b,c进行去重，而hash_map仅可以快速对c进行去重，而b的去重是通过不断更新hash_map中对应项的渴望来实现的，所以可能速度较慢。（仅是个人观点，实在想不到为什么hash_map会慢到连提交要求都达不到）</p>
+<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">int</span> length = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(length &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length<span class="number">-2</span>; i++)&#123;</span><br><span class="line">            <span class="comment">//双指针遍历</span></span><br><span class="line">            <span class="keyword">int</span> left = i+<span class="number">1</span>,right = nums.size<span class="number">-1</span>;</span><br><span class="line">            <span class="comment">//去重复</span></span><br><span class="line">            <span class="keyword">if</span>( i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>]) </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">//剪枝优化，三个正数和不可能为0</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                <span class="keyword">int</span>  sum = nums[left]+nums[right]+nums[i];</span><br><span class="line">                <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t = &#123;nums[i],nums[left],nums[right]&#125;;</span><br><span class="line">                    result.push_back(t);</span><br><span class="line">                    <span class="comment">//去重</span></span><br><span class="line">                    <span class="keyword">while</span>(left+<span class="number">1</span> &lt; right &amp;&amp; nums[left+<span class="number">1</span>] == nums[left])&#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//去重</span></span><br><span class="line">                    <span class="keyword">while</span>(right<span class="number">-1</span> &lt; left &amp;&amp; nums[right] == nums[right])&#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    left++;</span><br><span class="line">                    right--;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//sum&gt;0  说明此时右端点的数过大</span></span><br><span class="line">                    right--;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">//sum&lt;0 说明此时左端点的数过小</span></span><br><span class="line">                    left++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;   </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="相似的题目："><a href="#相似的题目：" class="headerlink" title="相似的题目："></a>相似的题目：</h1><p><a href="https://sdy1999.github.io/2019/05/18/leetcode-015/">leetcode_015：三数之和</a></p>
+<p><a href="https://sdy1999.github.io/2019/05/24/leetcode-018/">leetcode-018：四数之和</a></p>
+<p><a href="https://sdy1999.github.io/2019/05/24/leetcode-016/">leetcode-016：最接近的三数之和</a></p>
+<p><a href="https://sdy1999.github.io/2019/05/24/leetcode-001/">leetcode-001：两数之和</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode-数组/" rel="tag"># leetcode-数组</a>
+          
+            <a href="/tags/leetcode-中等/" rel="tag"># leetcode-中等</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/leetcode-004/" rel="next" title="leetcode-004：寻找两个有序数组的中位数">
+                <i class="fa fa-chevron-left"></i> leetcode-004：寻找两个有序数组的中位数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/24/leetcode-001/" rel="prev" title="leetcode-001：两数之和">
+                leetcode-001：两数之和 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Sun DongYue</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路："><span class="nav-number">3.</span> <span class="nav-text">解题思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路一：使用hash-map"><span class="nav-number">3.1.</span> <span class="nav-text">思路一：使用hash_map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash-map去重的方式"><span class="nav-number">3.1.1.</span> <span class="nav-text">hash_map去重的方式:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">3.1.2.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路二：使用双指针遍历"><span class="nav-number">3.2.</span> <span class="nav-text">思路二：使用双指针遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法："><span class="nav-number">3.2.1.</span> <span class="nav-text">解法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相似的题目："><span class="nav-number">4.</span> <span class="nav-text">相似的题目：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun DongYue</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
